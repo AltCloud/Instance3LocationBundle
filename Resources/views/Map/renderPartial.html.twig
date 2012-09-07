@@ -1,0 +1,30 @@
+{% if displayoptions.showdesc is defined %}	
+	{% set showdesc 		= displayoptions.showdesc %}
+{% else %}
+	{% set showdesc 		= true %}
+{% endif %}
+
+{% if displayoptions.linktitle is defined %}
+	{% set linktitle 		= displayoptions.linktitle %}
+{% else %}
+	{% set linktitle 		= false %}
+{% endif %}
+{% if displayoptions.titletag is defined %}
+	{% set titletag 		= displayoptions.titletag %}
+{% else %}
+	{% set titletag 		= 'h2' %}
+{% endif %}
+
+{% if displayoptions.linkmask is defined %}
+	{% set linkmask = displayoptions.linkmask %}
+{% else %}
+	{% set linkmask = path('map_render', { 'id': 'PLCHLDR' }) %}
+{% endif %}
+
+{% if linktitle == true %}<a href="{{ linkmask|replace({'PLCHLDR': location.id}) }}">{% endif %}
+	<{{titletag}}>{{ map.title }}</{{titletag}}>
+{% if linktitle == true %}</a>{% endif %}
+
+{% if showdesc == true %}
+<p>{{ map.description }}</p>
+{% endif %}

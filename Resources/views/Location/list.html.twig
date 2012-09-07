@@ -1,0 +1,6 @@
+{% extends tpl %}
+
+{% block content_in %}
+	{% include "ACInst3LocationBundle:Location:listPartial.html.twig" with {'locations': locations } %}
+	{% include "ACInst3LocationBundle:Location:plotPartial.html.twig" with {'locations': locations } %}
+{% endblock %}

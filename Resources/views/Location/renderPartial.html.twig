@@ -1,0 +1,55 @@
+{% if displayoptions.showdesc is defined %}	
+	{% set showdesc 		= displayoptions.showdesc %}
+{% else %}
+	{% set showdesc 		= true %}
+{% endif %}
+{% if displayoptions.showaddr is defined %}	
+	{% set showaddr 		= displayoptions.showaddr %}
+{% else %}
+	{% set showaddr 		= true %}
+{% endif %}
+{% if displayoptions.showcoord is defined %}	
+	{% set showcoord 		= displayoptions.showcoord %}
+{% else %}
+	{% set showcoord 		= true %}
+{% endif %}
+
+{% if displayoptions.linktitle is defined %}
+	{% set linktitle 		= displayoptions.linktitle %}
+{% else %}
+	{% set linktitle 		= false %}
+{% endif %}
+{% if displayoptions.titletag is defined %}
+	{% set titletag 		= displayoptions.titletag %}
+{% else %}
+	{% set titletag 		= 'h2' %}
+{% endif %}
+
+{% if displayoptions.linkmask is defined %}
+	{% set linkmask = displayoptions.linkmask %}
+{% else %}
+	{% set linkmask = path('location_render', { 'id': 'PLCHLDR' }) %}
+{% endif %}
+
+{% if linktitle == true %}<a href="{{ linkmask|replace({'PLCHLDR': location.id}) }}">{% endif %}
+	<{{titletag}}>{{ location.title }}</{{titletag}}>
+{% if linktitle == true %}</a>{% endif %}
+
+{% if displayoptions.mediadisplayoptions is defined %}
+	{% set locationMediaDispOpts = displayoptions.mediadisplayoptions %}
+{% else %}
+	{% set locationMediaDispOpts = {'formatmaxwidth': 200 , 'formatmaxheight': 300, 'formatalign': 'left' } %}
+{% endif %}
+
+{% if location.media %}
+	{% include "ACInst3MediaBundle:Format:display.html.twig" with {'format': location.media.thumbnail, 'displayoptions': locationMediaDispOpts} %}
+{% endif %}
+
+{% if showaddr == true %} <p><i>{{ location.address }}</i></p> {% endif %}
+{% if showcoord == true %} <p><b>{{ location.coordinates }}</b></p> {% endif %}
+
+{% include "ACInst3LocationBundle:Location:plotPartial.html.twig" with {'location': location } %}
+
+{% if showdesc == true %}
+<p>{{ location.description }}</p>
+{% endif %}

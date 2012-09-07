@@ -1,0 +1,29 @@
+AltCloud\Instance3LocationBundle\Entity\Location:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    title:
+      type: string
+      length: 255
+    description:
+      type: text
+      nullable: true
+    address:
+      type: string
+      length: 255
+      nullable: true
+    coordinates:
+      type: string
+      length: 255
+      nullable: true
+  lifecycleCallbacks: {  }
+  manyToOne:
+    media:
+      targetEntity: AltCloud\Instance3MediaBundle\Entity\Media
+    map:
+      targetEntity: AltCloud\Instance3LocationBundle\Entity\Map

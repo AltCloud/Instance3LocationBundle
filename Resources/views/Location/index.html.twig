@@ -1,0 +1,47 @@
+{% extends 'ACInst3Bundle::admin_layout.html.twig' %}
+
+{% block content_in %}
+<h1>Location list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Map</th>
+            <th>Title</th>
+            <th>Address</th>
+            <th>Coordinates</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('admin_location_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{% if entity.map %}<a href="{{ path('admin_map_show', { 'id': entity.map.id }) }}">{{ entity.map.title|title }}</a>{% endif %}</td>
+            <td>{{ entity.title }}</td>
+            <td>{{ entity.address }}</td>
+            <td>{{ entity.coordinates }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_location_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_location_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('admin_location_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
+{% endblock %}

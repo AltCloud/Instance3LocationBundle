@@ -1,0 +1,35 @@
+{% set mapcontainerid = 'jqgmap' %}
+
+<div id="{{ mapcontainerid }}" style="height: 450px; width: 600px;">
+</div>
+
+<script type="text/javascript">
+
+{% if jsonurl is defined %}
+jQuery.getJSON( '{{ jsonurl }}', function(data) { 
+        jQuery.each( data, function(i, m) {
+                jQuery('#{{ mapcontainerid }}').gmap('addMarker', { 'position': m.coordinates, 'bounds':true } ).click(function() {
+  		              jQuery('#{{ mapcontainerid }}').gmap('openInfoWindow', { 'content': '<p><b>'+m.title+'</b></p><p><i>'+m.address+'</i></p><p>'+m.description+'</p>' }, this);
+       			 });
+       			 console.log('Added marker:'+m.title);                                                                                                                                                                                                        
+        });
+});
+{% endif %}
+
+{% if location is defined %}
+		jQuery('#{{ mapcontainerid }}').gmap('addMarker', { 'position': '{{location.coordinates}}', 'bounds':true } ).click(function() {
+			  jQuery('#{{ mapcontainerid }}').gmap('openInfoWindow', { 'content': '<p><b>{{location.title}}</b></p><p><i>{{location.address}}</i></p><p>{{location.description}}</p>' }, this);
+		 });
+		 console.log('Added marker: {{location.title}}');  
+{% endif %}
+
+{% if locations is defined %}
+	{% for location in locations %}
+		jQuery('#{{ mapcontainerid }}').gmap('addMarker', { 'position': '{{location.coordinates}}', 'bounds':true } ).click(function() {
+			  jQuery('#{{ mapcontainerid }}').gmap('openInfoWindow', { 'content': '<p><b>{{location.title}}</b></p><p><i>{{location.address}}</i></p><p>{{location.description}}</p>' }, this);
+		 });
+		 console.log('Added marker: {{location.title}}'); 
+	{% endfor %}
+{% endif %}
+
+</script>                                                                                                                                                                                        

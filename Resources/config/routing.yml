@@ -1,0 +1,21 @@
+ACInst3LocationBundle_admin_location:
+    resource: "@ACInst3LocationBundle/Resources/config/routing/location.yml"
+    prefix:   /admin/location
+
+location_render:
+    pattern:  /location/{id}
+    defaults: { _controller: ACInst3LocationBundle:Location:render }
+
+location_list:
+    pattern:  /location/list/{map}.{_format}
+    defaults: { _controller: ACInst3LocationBundle:Location:list, map: false, _format: html }
+    requirements:
+        _format:  html|json
+    
+ACInst3LocationBundle_admin_map:
+    resource: "@ACInst3LocationBundle/Resources/config/routing/map.yml"
+    prefix:   /admin/map
+    
+map_render:
+    pattern:  /map/{id}
+    defaults: { _controller: ACInst3LocationBundle:Map:render }

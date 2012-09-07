@@ -1,0 +1,5 @@
+{% extends tpl %}
+
+{% block content_in %}
+	{% include "ACInst3LocationBundle:Location:renderPartial.html.twig" with {'location': location, 'displayoptions' : displayoptions} %}
+{% endblock %}

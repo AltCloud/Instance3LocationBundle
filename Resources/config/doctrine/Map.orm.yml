@@ -1,0 +1,20 @@
+AltCloud\Instance3LocationBundle\Entity\Map:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    title:
+      type: string
+      length: 255
+    description:
+      type: text
+      nullable: true
+  lifecycleCallbacks: {  }
+  oneToMany:
+    locations:
+      targetEntity: Location
+      mappedBy: map

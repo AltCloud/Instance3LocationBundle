@@ -1,0 +1,44 @@
+{% if displayoptions.locationdisplayoptions is defined %}
+	{% set locationdisplayoptions = displayoptions.locationdisplayoptions %}
+{% else %}
+	{% set locationdisplayoptions = false %}
+{% endif %}
+
+{% if locationdisplayoptions.showdesc is defined %}
+	{% set locationshowdesc = locationdisplayoptions.showdesc %}
+{% else %}
+	{% set locationshowdesc = false %}
+{% endif %}
+
+{% if locationdisplayoptions.linktitle is defined %}
+	{% set locationlinktitle = locationdisplayoptions.linktitle %}
+{% else %}
+	{% set locationlinktitle = true %}
+{% endif %}
+{% if locationdisplayoptions.titletag is defined %}
+	{% set locationtitletag = locationdisplayoptions.titletag %}
+{% else %}
+	{% set locationtitletag = 'b' %}
+{% endif %}
+
+{% if locationdisplayoptions.linkmask is defined %}
+	{% set locationlinkmask = locationdisplayoptions.linkmask %}
+{% elseif displayoptions.linkmask is defined %}
+	{% set locationlinkmask = displayoptions.linkmask %}
+{% else %}
+	{% set locationlinkmask = path('location_render', { 'id': 'PLCHLDR' }) %}
+{% endif %}
+
+{% set locationDispOpts = {'showdesc': locationshowdesc, 'linktitle': locationlinktitle, 'titletag': locationtitletag, 'linkmask': locationlinkmask } %}
+
+<table class="records_list">
+	<tbody>
+	{% for entity in locations %}
+		<tr>
+			<td>
+				{% include "ACInst3LocationBundle:Location:renderPartial.html.twig" with {'location': entity, 'displayoptions' : locationDispOpts} %}
+			</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
