@@ -29,8 +29,6 @@ class MapController extends Controller
 		
         	return $this->render('ACInst3LocationBundle:Map:renderPartial.html.twig', array(
     							 'map' => $map, 
-    							 'tpl' => $tpl, 
-    							 'node' => $node,
     							 'displayoptions' => $displayoptions));
     }
 

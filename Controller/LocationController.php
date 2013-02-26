@@ -90,8 +90,6 @@ class LocationController extends Controller
 		
         	return $this->render('ACInst3LocationBundle:Location:renderPartial.html.twig', array(
     							 'location' => $location, 
-    							 'tpl' => $tpl, 
-    							 'node' => $node,
     							 'displayoptions' => $displayoptions));
     	}
     /**
