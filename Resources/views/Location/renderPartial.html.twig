@@ -1,3 +1,8 @@
+{% if displayoptions.showtitle is defined %}	
+	{% set showtitle 		= displayoptions.showtitle %}
+{% else %}
+	{% set showtitle 		= true %}
+{% endif %}
 {% if displayoptions.showdesc is defined %}	
 	{% set showdesc 		= displayoptions.showdesc %}
 {% else %}
@@ -31,10 +36,11 @@
 	{% set linkmask = path('location_render', { 'id': 'PLCHLDR' }) %}
 {% endif %}
 
-{% if linktitle == true %}<a href="{{ linkmask|replace({'PLCHLDR': location.id}) }}">{% endif %}
-	<{{titletag}}>{{ location.title }}</{{titletag}}>
-{% if linktitle == true %}</a>{% endif %}
-
+{% if showtitle %}
+	{% if linktitle == true %}<a href="{{ linkmask|replace({'PLCHLDR': location.id}) }}">{% endif %}
+		<{{titletag}}>{{ location.title }}</{{titletag}}>
+	{% if linktitle == true %}</a>{% endif %}
+{% endif %}
 {% if displayoptions.mediadisplayoptions is defined %}
 	{% set locationMediaDispOpts = displayoptions.mediadisplayoptions %}
 {% else %}

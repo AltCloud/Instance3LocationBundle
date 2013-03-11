@@ -4,9 +4,9 @@
 </div>
 
 <script type="text/javascript">
-
+$(document).ready(function() {
 {% if jsonurl is defined %}
-jQuery.getJSON( '{{ jsonurl }}', function(data) { 
+$().getJSON( '{{ jsonurl }}', function(data) { 
         jQuery.each( data, function(i, m) {
                 jQuery('#{{ mapcontainerid }}').gmap('addMarker', { 'position': m.coordinates, 'bounds':true } ).click(function() {
   		              jQuery('#{{ mapcontainerid }}').gmap('openInfoWindow', { 'content': '<p><b>'+m.title+'</b></p><p><i>'+m.address+'</i></p><p>'+m.description+'</p>' }, this);
@@ -31,5 +31,5 @@ jQuery.getJSON( '{{ jsonurl }}', function(data) {
 		 console.log('Added marker: {{location.title}}'); 
 	{% endfor %}
 {% endif %}
-
+});
 </script>                                                                                                                                                                                        
